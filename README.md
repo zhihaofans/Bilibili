@@ -21,3 +21,13 @@ Bilibili小黑屋爬虫及数据备份
 
 - [小黑屋列表](blackroom/data/blackListsData.json)
 - [曾被封禁用户列表](blackroom/data/blackListsUserData.json)
+
+爬虫基于
+-
+- 语言: `Python 3.5.2`
+
+- 模块: `requests` ([下载地址](http://cn.python-requests.org/zh_CN/latest/user/install.html))
+
+LICENSE
+-
+- [Apache-2.0](LICENSE)
