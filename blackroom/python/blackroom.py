@@ -30,16 +30,16 @@ def saveData(data):
     # 历史数据
     print("历史数据")
     for a in data:
-        f.write(savePath_history + str(a['id']) + ".json", json.dumps(a))
+        f.write(savePath_history + str(a['id']) + ".json", json.dumps(a),True)
     # 永久封禁
     print("永久封禁与限时封禁封禁数据分开按用户储存")
     for b in data:
         if b["blockedForever"]:
-            f.write(savePath_forever + str(b['uid']) + ".json", json.dumps(b))
+            f.write(savePath_forever + str(b['uid']) + ".json", json.dumps(b),True)
         else:
             filePath = savePath_noForever + str(b['uid']) + "/"
             f.mk(filePath)
-            f.write(filePath + str(b['id']) + ".json", json.dumps(b))
+            f.write(filePath + str(b['id']) + ".json", json.dumps(b),True)
     f.write("update.txt", thisTime)
 
 
