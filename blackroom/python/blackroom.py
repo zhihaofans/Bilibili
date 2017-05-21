@@ -32,7 +32,7 @@ def saveData(data):
     for a in data:
         f.write(savePath_history + str(a['id']) + ".json", json.dumps(a),True)
     # 永久封禁
-    print("永久封禁与限时封禁封禁数据分开按用户储存")
+    print("永久封禁与限时封禁数据分开按用户储存")
     for b in data:
         if b["blockedForever"]:
             f.write(savePath_forever + str(b['uid']) + ".json", json.dumps(b),True)
