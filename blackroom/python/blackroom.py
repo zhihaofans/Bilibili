@@ -2,7 +2,7 @@
 # -*-coding:utf-8 -*-
 # ProjectName:Bilibili小黑屋爬虫v2
 # Author:zhihaofans
-# Github:https://github.com/zhihaofans/Bilibili-BlackList
+# Github:https://github.com/zhihaofans/Bilibili/tree/master/blackroom
 # PythonVersion:3.x
 import logging
 import requests
@@ -12,7 +12,7 @@ import time
 from bilibili import blackRoom
 from zhihaofans import file as f
 
-savePath = './data/'
+savePath = '../data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
 savePath_backup = savePath + '/backup/'

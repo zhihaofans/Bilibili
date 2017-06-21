@@ -30,7 +30,7 @@ Bilibili小黑屋爬虫及数据备份
 
 模块: 
 - `requests` ([下载地址](http://cn.python-requests.org/zh_CN/latest/user/install.html))
-- `file.py` ( [我自行封装的代码 file.py](https://github.com/zhihaofans/python-something/blob/master/mod/file.py))
+- `file.py` ( [我自行封装的代码 file.py](https://github.com/zhihaofans/python-something/blob/master/mod/file.py)) (已附带)
 
 
 ### 注意
@@ -39,7 +39,7 @@ Bilibili小黑屋爬虫及数据备份
 
 ### 其他
 本脚本仅作学习使用，由该脚本生成的数据仅作学习参考使用。
-本项目随时可能因为其他原因删除。
+本项目随时可能因为某些原因原因删除。
 
 ### LICENSE
 - [Apache-2.0](LICENSE)
