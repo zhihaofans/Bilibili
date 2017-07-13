@@ -14,6 +14,10 @@
 
 Bilibili小黑屋爬虫及数据备份
 
+### 已知BUG
+
+请在 `Bilibili/blackroom/python` 路径下执行 [`Bilibili/blackroom/python/blackroom.py`](python/blackroom.py) ,否则将导致数据保存路径错误(待修复)
+
 ### 数据
 
 - [上次更新时间](update.txt) (UNIX时间戳，秒)
