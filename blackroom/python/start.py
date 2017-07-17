@@ -4,7 +4,6 @@
 # Author:zhihaofans
 # Github:https://github.com/zhihaofans/Bilibili/tree/master/blackroom
 # PythonVersion:3.x
-import logging
 import requests
 import os
 import json
@@ -12,7 +11,7 @@ import time
 from bilibili import blackRoom
 from zhihaofans import file as f
 
-savePath = '../data/'
+savePath = f.getUpPath(f.getMyPyPath()) + '/data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
 savePath_backup = savePath + '/backup/'
