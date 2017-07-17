@@ -83,7 +83,8 @@ def main():
     brList = blackRoom.getData()
     print("保存数据")
     saveData(brList)
-    print("抓取完成")
+    print("抓取完成,开始push")
+    getPush()
     input("按回车退出")
     exit()
 
