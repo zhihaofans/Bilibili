@@ -19,7 +19,7 @@ savePath_backup = savePath + '/backup/'
 savePath_history = savePath + '/history/'
 
 blList = []
-updateTime = 0
+updateTime = 'None'
 gitPath = 'git'
 gitLocalBranch = 'origin'
 gitRemoteBranch = 'master'
@@ -32,12 +32,11 @@ if platform.system() == "Windows":
     savePath_history = savePath_history.replace('/', '\\')
 
 def saveData(data):
-    thisTime = str(time.time()).split(".")[0]
-    updateTime = thisTime
+    updateTime = str(time.time()).split(".")[0]
     f.write(savePath + "blackroom.json", json.dumps(data))
     # 备份数据
     print("备份数据")
-    f.write(savePath_backup + thisTime + ".json", json.dumps(data))
+    f.write(savePath_backup + updateTime + ".json", json.dumps(data))
     # 历史数据
     print("历史数据")
     for a in data:
@@ -52,7 +51,7 @@ def saveData(data):
             filePath = savePath_noForever + str(b['uid']) + "/"
             f.mk(filePath)
             f.write(filePath + str(b['id']) + ".json", json.dumps(b), True)
-    f.write(savePath + "update.txt", thisTime)
+    f.write(savePath + "update.txt", updateTime)
 
 
 def mkdirs():
@@ -67,7 +66,7 @@ def getPush():
     os.chdir(f.getUpPath(f.getMyPyPath()))
     print(getCmd("git add *"))
     print(getCmd("git status"))
-    print(getCmd("git commit -m \"Auto update blackroom(" + str(updateTime) + ")\""))
+    print(getCmd("git commit -m \"Auto update blackroom(" + updateTime + ")\""))
     print(getCmd("git push " + gitLocalBranch + " " + gitRemoteBranch))
 
 
