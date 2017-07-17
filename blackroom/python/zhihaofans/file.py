@@ -12,7 +12,7 @@ def read(filePath):
         return f.read()
 
 
-def write(filePath, fileData,stopIfExisted=False):
+def write(filePath, fileData, stopIfExisted=False):
     if stopIfExisted and exists(filePath):
         return None
     with open(filePath, "w") as f:
@@ -112,9 +112,26 @@ def exists(path):
 
 def isdir(path):
     return os.path.isdir(path)
+
+
 def getDir(path):
     return os.path.dirname(path)
+
+
 def getFilename(path):
     return os.path.basename(path)
+
+
 def getExtname(path):
     return os.path.splitext(path)[1]
+
+
+def getMyPyPath():
+    return os.path.split(os.path.realpath(__file__))[0]
+
+
+def getUpPath(path):
+    inputPath = path
+    if inputPath[-1] == '/' or inputPath[-1] == '\\':
+        inputPath = inputPath[:-1]
+    return os.path.split(inputPath)[0]
