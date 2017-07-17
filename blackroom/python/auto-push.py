@@ -67,7 +67,7 @@ def getPush():
     os.chdir(f.getUpPath(f.getMyPyPath()))
     print(getCmd("git add *"))
     print(getCmd("git status"))
-    print(getCmd("git commit -m \"Auto update blackroom(" + str(updateTime) + "\")"))
+    print(getCmd("git commit -m \"Auto update blackroom(" + str(updateTime) + ")\""))
     print(getCmd("git push " + gitLocalBranch + " " + gitRemoteBranch))
 
 
