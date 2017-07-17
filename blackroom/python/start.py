@@ -8,16 +8,23 @@ import requests
 import os
 import json
 import time
+import platform
 from bilibili import blackRoom
 from zhihaofans import file as f
-
-savePath = f.getUpPath(f.getMyPyPath()) + '/data/'
+savePath = f.getUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
 savePath_backup = savePath + '/backup/'
 savePath_history = savePath + '/history/'
 
 blList = []
+
+if platform.system() == "Windows":
+    savePath = savePath.replace('/', '\\')
+    savePath_forever = savePath_forever.replace('/', '\\')
+    savePath_noForever = savePath_noForever.replace('/', '\\')
+    savePath_backup = savePath_backup.replace('/', '\\')
+    savePath_history = savePath_history.replace('/', '\\')
 
 
 def saveData(data):
@@ -51,6 +58,8 @@ def mkdirs():
 
 
 def main():
+    print(savePath)
+    input('OK?')
     mkdirs()
     print("开始抓取小黑屋数据")
     brList = blackRoom.getData()
