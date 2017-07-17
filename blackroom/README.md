@@ -16,7 +16,7 @@ Bilibili小黑屋爬虫及数据备份
 
 ### 已知BUG
 
-请在 `Bilibili/blackroom/python` 路径下执行 [`Bilibili/blackroom/python/blackroom.py`](python/blackroom.py) ,否则将导致数据保存路径错误(待修复)
+请在 `Bilibili/blackroom/python` 路径下执行 [`Bilibili/blackroom/python/start.py`](python/start.py) ,否则将导致数据保存路径错误(待修复)
 
 ### 数据
 
@@ -39,7 +39,7 @@ Bilibili小黑屋爬虫及数据备份
 
 ### 注意
 
--  [代码](python/blackroom.py) 里的 `from bilibili import blackRoom` 所调用的是我自行封装的代码(位于目录下的 [bilibili/blackRoom.py](python/bilibili/blackRoom.py))
+-  [代码](python/start.py) 里的 `from bilibili import blackRoom` 所调用的是我自行封装的代码(位于目录下的 [bilibili/start.py](python/bilibili/start.py))
 
 ### 其他
 本脚本仅作学习使用，由该脚本生成的数据仅作学习参考使用。
