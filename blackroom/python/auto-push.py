@@ -8,10 +8,11 @@ import requests
 import os
 import json
 import time
+import platform
 from bilibili import blackRoom
 from zhihaofans import file as f
 
-savePath = f.getUpPath(f.getMyPyPath()) + '/data/'
+savePath = f.getUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
 savePath_backup = savePath + '/backup/'
@@ -23,6 +24,12 @@ gitPath = 'git'
 gitLocalBranch = 'origin'
 gitRemoteBranch = 'master'
 
+if platform.system() == "Windows":
+    savePath = savePath.replace('/', '\\')
+    savePath_forever = savePath_forever.replace('/', '\\')
+    savePath_noForever = savePath_noForever.replace('/', '\\')
+    savePath_backup = savePath_backup.replace('/', '\\')
+    savePath_history = savePath_history.replace('/', '\\')
 
 def saveData(data):
     thisTime = str(time.time()).split(".")[0]
@@ -69,6 +76,8 @@ def getCmd(cmdText):
 
 
 def main():
+    print(savePath)
+    input('This path,OK?')
     mkdirs()
     print("开始抓取小黑屋数据")
     brList = blackRoom.getData()

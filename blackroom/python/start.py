@@ -11,6 +11,7 @@ import time
 import platform
 from bilibili import blackRoom
 from zhihaofans import file as f
+
 savePath = f.getUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
@@ -59,7 +60,7 @@ def mkdirs():
 
 def main():
     print(savePath)
-    input('OK?')
+    input('This path,OK?')
     mkdirs()
     print("开始抓取小黑屋数据")
     brList = blackRoom.getData()
