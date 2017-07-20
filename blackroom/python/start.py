@@ -49,6 +49,7 @@ def saveData(data):
             f.mk(filePath)
             f.write(filePath + str(b['id']) + ".json", json.dumps(b), True)
     f.write(savePath + "update.txt", thisTime)
+    print(thisTime)
 
 
 def mkdirs():
