@@ -9,10 +9,8 @@ import os
 import json
 import time
 import platform
-from bilibili import blackRoom
-from zhihaofans import file as f
 
-savePath = f.getUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
+savePath = fGetUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
 savePath_forever = savePath + '/forever/'
 savePath_noForever = savePath + '/user/'
 savePath_backup = savePath + '/backup/'
@@ -28,35 +26,68 @@ if platform.system() == "Windows":
     savePath_history = savePath_history.replace('/', '\\')
 
 
+def fWrite(filePath, fileData, stopIfExisted=False):
+    if stopIfExisted and os.path.exists(filePath):
+        return None
+    with open(filePath, "w") as ff:
+        return ff.write(fileData)
+
+
+def fGetUpPath(path):
+    inputPath = path
+    if inputPath[-1] == '/' or inputPath[-1] == '\\':
+        inputPath = inputPath[:-1]
+    return os.path.split(inputPath)[0]
+
+
+def fMk(path, mode=0o777):
+    try:
+        os.makedirs(name=path, mode=mode, exist_ok=True)
+        return True
+    except:
+        return False
+
+
 def saveData(data):
     thisTime = str(time.time()).split(".")[0]
-    f.write(savePath + "blackroom.json", json.dumps(data))
+    fWrite(savePath + "blackroom.json", json.dumps(data))
     # 备份数据
     print("备份数据")
-    f.write(savePath_backup + thisTime + ".json", json.dumps(data))
+    fWrite(savePath_backup + thisTime + ".json", json.dumps(data))
     # 历史数据
     print("历史数据")
     for a in data:
-        f.write(savePath_history + str(a['id']) + ".json", json.dumps(a), True)
+        fWrite(savePath_history + str(a['id']) + ".json", json.dumps(a), True)
     # 永久封禁
     print("永久封禁与限时封禁数据分开按用户储存")
     for b in data:
         if b["blockedForever"]:
-            f.write(savePath_forever +
-                    str(b['uid']) + ".json", json.dumps(b), True)
+            fWrite(savePath_forever +
+                   str(b['uid']) + ".json", json.dumps(b), True)
         else:
             filePath = savePath_noForever + str(b['uid']) + "/"
-            f.mk(filePath)
-            f.write(filePath + str(b['id']) + ".json", json.dumps(b), True)
-    f.write(savePath + "update.txt", thisTime)
+            fMk(filePath)
+            fWrite(filePath + str(b['id']) + ".json", json.dumps(b), True)
+    fWrite(savePath + "update.txt", thisTime)
     print(thisTime)
 
 
 def mkdirs():
-    f.mk(savePath_forever)
-    f.mk(savePath_noForever)
-    f.mk(savePath_backup)
-    f.mk(savePath_history)
+    fMk(savePath_forever)
+    fMk(savePath_noForever)
+    fMk(savePath_backup)
+    fMk(savePath_history)
+
+
+def getData(originType=0):
+    a = "https://www.bilibili.com/blackroom/web/blocked_info?originType="\
+        + str(originType) + "&pageSize=0"
+    b = requests.get(a).json()
+    if b["code"] == 0:
+        return b["data"]
+    else:
+        print(b["msg"], "(", b["code"], ")", "\n")
+        return False
 
 
 def main():
@@ -64,7 +95,11 @@ def main():
     input('This path,OK?')
     mkdirs()
     print("开始抓取小黑屋数据")
-    brList = blackRoom.getData()
+    brList = getData()
+    if brList is False:
+        print("获取失败,END")
+        input("按回车退出")
+        exit()
     print("保存数据")
     saveData(brList)
     print("抓取完成")
