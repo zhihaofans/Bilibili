@@ -4,26 +4,11 @@
 # Author:zhihaofans
 # Github:https://github.com/zhihaofans/Bilibili/tree/master/blackroom
 # PythonVersion:3.x
-import requests
 import os
 import json
 import time
 import platform
-
-savePath = fGetUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
-savePath_forever = savePath + '/forever/'
-savePath_noForever = savePath + '/user/'
-savePath_backup = savePath + '/backup/'
-savePath_history = savePath + '/history/'
-
-blList = []
-
-if platform.system() == "Windows":
-    savePath = savePath.replace('/', '\\')
-    savePath_forever = savePath_forever.replace('/', '\\')
-    savePath_noForever = savePath_noForever.replace('/', '\\')
-    savePath_backup = savePath_backup.replace('/', '\\')
-    savePath_history = savePath_history.replace('/', '\\')
+import requests
 
 
 def fWrite(filePath, fileData, stopIfExisted=False):
@@ -46,6 +31,21 @@ def fMk(path, mode=0o777):
         return True
     except:
         return False
+
+savePath = fGetUpPath(os.path.split(os.path.realpath(__file__))[0]) + '/data/'
+savePath_forever = savePath + '/forever/'
+savePath_noForever = savePath + '/user/'
+savePath_backup = savePath + '/backup/'
+savePath_history = savePath + '/history/'
+
+blList = []
+
+if platform.system() == "Windows":
+    savePath = savePath.replace('/', '\\')
+    savePath_forever = savePath_forever.replace('/', '\\')
+    savePath_noForever = savePath_noForever.replace('/', '\\')
+    savePath_backup = savePath_backup.replace('/', '\\')
+    savePath_history = savePath_history.replace('/', '\\')
 
 
 def saveData(data):
@@ -71,14 +71,6 @@ def saveData(data):
     fWrite(savePath + "update.txt", thisTime)
     print(thisTime)
 
-
-def mkdirs():
-    fMk(savePath_forever)
-    fMk(savePath_noForever)
-    fMk(savePath_backup)
-    fMk(savePath_history)
-
-
 def getData(originType=0):
     a = "https://www.bilibili.com/blackroom/web/blocked_info?originType="\
         + str(originType) + "&pageSize=0"
@@ -93,7 +85,10 @@ def getData(originType=0):
 def main():
     print(savePath)
     input('This path,OK?')
-    mkdirs()
+    fMk(savePath_forever)
+    fMk(savePath_noForever)
+    fMk(savePath_backup)
+    fMk(savePath_history)
     print("开始抓取小黑屋数据")
     brList = getData()
     if brList is False:
