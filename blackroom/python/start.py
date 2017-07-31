@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*-coding:utf-8 -*-
-# ProjectName:Bilibili小黑屋爬虫v2
+# ProjectName:Bilibili-blackroom-python
 # Author:zhihaofans
 # Github:https://github.com/zhihaofans/Bilibili/tree/master/blackroom
 # PythonVersion:3.x
@@ -52,14 +52,14 @@ def saveData(data):
     thisTime = str(time.time()).split(".")[0]
     fWrite(savePath + "blackroom.json", json.dumps(data))
     # 备份数据
-    print("备份数据")
+    print("Backup data")
     fWrite(savePath_backup + thisTime + ".json", json.dumps(data))
     # 历史数据
-    print("历史数据")
+    print("History data")
     for a in data:
         fWrite(savePath_history + str(a['id']) + ".json", json.dumps(a), True)
     # 永久封禁
-    print("永久封禁与限时封禁数据分开按用户储存")
+    print("Save permanent ban and impermanent ban data in user folder")
     for b in data:
         if b["blockedForever"]:
             fWrite(savePath_forever +
@@ -89,16 +89,16 @@ def main():
     fMk(savePath_noForever)
     fMk(savePath_backup)
     fMk(savePath_history)
-    print("开始抓取小黑屋数据")
+    print("Start
     brList = getData()
     if brList is False:
-        print("获取失败,END")
-        input("按回车退出")
+        print("Fail,END")
+        input("Press \'Enter\' key to exit")
         exit()
-    print("保存数据")
+    print("Save data")
     saveData(brList)
-    print("抓取完成")
-    input("按回车退出")
+    print("Finish")
+    input("Press \'Enter\' key to exit")
     exit()
 
 
