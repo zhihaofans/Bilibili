@@ -84,12 +84,12 @@ def getData(originType=0):
 
 def main():
     print(savePath)
-    input('This path,OK?')
+    input("This path,OK?")
     fMk(savePath_forever)
     fMk(savePath_noForever)
     fMk(savePath_backup)
     fMk(savePath_history)
-    print("Start
+    print("Start")
     brList = getData()
     if brList is False:
         print("Fail,END")
